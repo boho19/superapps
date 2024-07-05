@@ -13,6 +13,9 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="icon" href="{{ asset('assets/vendor/swiperjs-6.6.2/manifest.json') }}">
 
+        {{-- PWA --}}
+        <link rel="manifest" href="{{ asset('assets/js/manifest.json') }}">
+
         <!-- Favicons -->
         <link rel="apple-touch-icon" href="{{ asset('assets/img/favicon180.png') }}" sizes="180x180">
         <link rel="icon" href="{{ asset('assets/img/favicon32.png') }}" sizes="32x32" type="image/png">

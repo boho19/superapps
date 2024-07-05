@@ -12,6 +12,9 @@
 
         <!-- manifest meta -->
         <meta name="apple-mobile-web-app-capable" content="yes">
+        {{-- PWA --}}
+        <link rel="manifest" href="{{ asset('assets/js/manifest.json') }}">
+
         <link rel="icon" href="{{ asset('assets/vendor/swiperjs-6.6.2/manifest.json') }}">
 
         <!-- Favicons -->
