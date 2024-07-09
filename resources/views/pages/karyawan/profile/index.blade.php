@@ -30,7 +30,7 @@
                                         </div>
                                         <div class="col ps-0 align-self-center">
                                             <span class="small text-opac mb-0">Total Absen</span>
-                                            <p class="mb-1">521 Kali</p>
+                                            <p class="mb-1">{{ $jumlahAbsen }} Kali</p>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="col ps-0 align-self-center">
                                             <span class="small text-opac mb-0">Total Izin</span>
-                                            <p class="mb-1">62 Kali</p>
+                                            <p class="mb-1">{{ $jumlahIzin }} Kali</p>
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="row mb-4">
+    {{-- <div class="row mb-4">
         <div class="col d-grid">
             <div class="card card-light shadow-sm">
                 @if ($data->status == 'aktif')
@@ -82,7 +82,7 @@
                 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- experince -->
     <div class="row mb-3">
@@ -107,6 +107,26 @@
                             </div>
                             <div class="col px-0">
                                 <p>{{ $data->nik }}<br><small class="text-opac">NIK</small></p>
+                            </div>
+                        </div>
+                    </li>
+                    {{-- Cabang --}}
+                    <li class="list-group-item border-0">
+                        <div class="row">
+                            <div class="col-auto">
+                                <figure class="avatar avatar-50 rounded-circle">
+                                    <img src="{{ asset('assets/img/bgshapes.png') }}" alt="">
+                                </figure>
+                            </div>
+                            <div class="col px-0">
+                                <p>
+                                    @if ($data->cabang == '')
+                                        <span class="text-danger">Cabang Belum di Masukan</span>
+                                    @else
+                                        {{ $data->cabang }}
+                                    @endif
+                                    <br>
+                                <small class="text-opac">Cabang</small></p>
                             </div>
                         </div>
                     </li>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\PasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\isValidKaryawan;
 use App\Http\Controllers\Karyawan\IndexController;
@@ -19,7 +20,10 @@ Route::middleware(['auth', 'verified', isValidKaryawan::class])->group(function 
     Route::get('/izin/create', [IzinController::class, 'createPage'])->name('izin.create');
     Route::post('/izin/store', [IzinController::class, 'storeData'])->name('izin.store');
 
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.password.update');
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::patch('/password/update', [PasswordController::class, 'update'])->name('password.update');
+
 });

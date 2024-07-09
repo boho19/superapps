@@ -14,13 +14,13 @@
                         <x-text-input type="password" id="password" name="password" placeholder="Masukan Password" required autocomplete="current-password" />
                         <x-input-label for="password" :value="__('Password')" />
                     </div>
-                    <div class="d-grid">
+                    {{-- <div class="d-grid">
                         @if (Route::has('password.request'))
                         <a class="link mb-3" style="text-align: left;" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
                         @endif
-                    </div>
+                    </div> --}}
 
                     <div class="d-grid">
                         <x-primary-button>{{ __('Sign In') }}</x-primary-button>

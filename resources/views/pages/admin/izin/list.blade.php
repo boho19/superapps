@@ -21,6 +21,7 @@
                                 <th>Alasan</th>
                                 <th>Mulai</th>
                                 <th>Selesai</th>
+                                <th>Bukti</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -30,10 +31,23 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $izin->karyawan->nama }}</td>
-                                <td>{{ $izin->keterangan }}</td>
+                                <td>
+                                    @if ($izin->keterangan == 'sakit')
+                                        <span class="badge bg-warning">{{ $izin->keterangan }}</span>
+                                    @else
+                                        <span class="badge bg-primary">{{ $izin->keterangan }}</span>
+                                    @endif
+                                </td>
                                 <td>{{ Str::limit($izin->alasan, 30) }}</td>
                                 <td>{{ $izin->mulai }}</td>
                                 <td>{{ $izin->selesai }}</td>
+                                <td>
+                                    @if ($izin->bukti == null)
+                                        <span class="badge bg-secondary">--</span>
+                                    @else
+                                        <img src="{{ asset('assets/img/perizinan').'/'.$izin->bukti }}" alt="foto" width="30px">
+                                    @endif
+                                </td>
                                 <td>
                                     @if ($izin->status == 'disetujui')
                                     <span class="badge bg-success">{{ ucwords($izin->status) }}</span>

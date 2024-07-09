@@ -39,7 +39,7 @@
                                         <td><input type="checkbox" class="checkbox-item" id="check-{{ $absen->hashid }}"></td>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $absen->karyawan->nama }}</td>
-                                        <td>{{ $absen->jarak }}</td>
+                                        <td>{{ number_format($absen->jarak, 1) }}</td>
                                         <td>{{ date('H:i:s', strtotime($absen->waktu_masuk)) }}</td>
                                         <td>{{ ucwords($absen->kehadiran) }}</td>
                                         <td><img src="{{ asset('assets/img/absen').'/'.$absen->bukti }}" alt="foto" width="30px"></td>
@@ -57,6 +57,7 @@
                                             <button class="btn btn-sm btn-danger" onclick="updateValidasi('{{ $absen->hashid }}', 'ditolak')">Tolak</button>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal"
+                                                data-nik="{{ $absen->karyawan->nik }}"
                                                 data-nama="{{ $absen->karyawan->nama }}"
                                                 data-jarak="{{ $absen->jarak }}"
                                                 data-kehadiran="{{ ucwords($absen->kehadiran) }}"
@@ -77,6 +78,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    <h6 id="modalNik"></h6>
                                     <h5 id="modalNama"></h5>
                                     <p style="margin:0; padding:0" id="modalJarak"></p>
                                     <p id="modalKehadiran"></p>
@@ -103,12 +105,15 @@
                 const jarak = button.getAttribute('data-jarak');
                 const kehadiran = button.getAttribute('data-kehadiran');
                 const bukti = button.getAttribute('data-bukti');
+                const nik = button.getAttribute('data-nik');
 
+                const modalNik = document.getElementById('modalNik');
                 const modalNama = document.getElementById('modalNama');
                 const modalJarak = document.getElementById('modalJarak');
                 const modalKehadiran = document.getElementById('modalKehadiran');
                 const modalBukti = document.getElementById('modalBukti');
 
+                modalNik.textContent = `Nik: ${nik}`;
                 modalNama.textContent = `Nama: ${nama}`;
                 modalJarak.textContent = `Jarak: ${jarak}`;
                 modalKehadiran.textContent = `Status Kehadiran: ${kehadiran}`;

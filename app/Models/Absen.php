@@ -11,6 +11,8 @@ class Absen extends Model
 {
     use HasFactory;
 
+    protected $dates = ['waktu_masuk', 'waktu_keluar'];
+
     protected $fillable = [
         'id_karyawan',
         'bukti',

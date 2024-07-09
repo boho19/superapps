@@ -16,13 +16,19 @@
                     <h2>Data detail Izin</h2>
                     <hr>
                     <div class="row">
+                    @if ($izin->bukti)
                         <div class="col-12 col-md-3 mb-4 d-flex justify-content-center align-items-center flex-column">
                             <div class="text-center mb-3">
-                                <img src="{{ asset('assets/img/profile').'/'.$izin->karyawan->foto }}" class="rounded img-fluid" alt="Foto Karyawan">
+                                {{-- <img src="{{ asset('assets/img/profile').'/'.$izin->karyawan->foto }}" class="rounded img-fluid" alt="Foto Karyawan"> --}}
+                                <img src="{{ asset('assets/img/perizinan').'/'.$izin->bukti }}" class="rounded img-fluid" alt="Bukti Perizinan">
+                                <hr>
+                                <h5>Lampiran</h5>
                             </div>
                         </div>
-                        
-                        <div class="col-12 col-md-9 mb-4">
+                        <div class="col-9 col-md-9 mb-4">
+                    @else
+                        <div class="col-12 col-md-12 mb-4">
+                    @endif
                             <table class="table table-striped">
                                 <tbody>
                                     <tr>
@@ -43,7 +49,13 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Keterangan</th>
-                                        <td>{{ $izin->keterangan }}</td>
+                                        <td>
+                                            @if ($izin->keterangan == 'sakit')
+                                                <span class="badge bg-warning">{{ $izin->keterangan }}</span>
+                                            @else
+                                                <span class="badge bg-primary">{{ $izin->keterangan }}</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Alasan</th>
@@ -57,6 +69,12 @@
                                         <th scope="row">Selesai</th>
                                         <td>{{ $izin->selesai }}</td>
                                     </tr>
+                                    {{-- <tr>
+                                        <th>Bukti</th>
+                                        <td>
+                                            <img src="{{ asset('assets/img/perizinan').'/'.$izin->bukti }}" class="rounded img-fluid pt-2" alt="Bukti Perizinan">
+                                        </td>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>

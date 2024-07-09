@@ -17,6 +17,7 @@ class Izin extends Model
         'alasan',
         'mulai',
         'selesai',
+        'bukti',
         'status',
     ];
 

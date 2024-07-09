@@ -35,12 +35,12 @@
                                             <span class="text-danger">Out</span>
                                             @endif
                                         </p>
-                                        <p class="small text-opac">{{ $absen->jarak }} meter</p>
+                                        <p class="small text-opac">{{ number_format($absen->jarak, 1) }} meter</p>
                                     </div>
                                     <div class="col-auto text-center">
-                                        @if (!$absen->waktu_keluar)
+                                        {{-- @if (!$absen->waktu_keluar)
                                             <a href="/absen/pulang/{{ $absen->hashid }}" class="btn btn-sm btn-info">Absen Pulang</a>
-                                        @endif
+                                        @endif --}}
                                         <div class="avatar avatar-40 coverimg rounded-circle" style="background-image: url('assets/img/user1.jpg');">
                                             <i class="bi bi-{{ $absen->status == 'disetujui' ? 'check-circle text-success' : ($absen->status == 'tertunda' ? 'dash-circle text-warning' : 'x-circle text-danger') }}"></i>
                                         </div>

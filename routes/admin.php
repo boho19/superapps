@@ -2,15 +2,17 @@
 
 use App\Http\Middleware\isValidAdmin;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminIzinController;
-use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminAbsenController;
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminKaryawanController;
 
 Route::prefix('admin')->middleware(['auth', 'verified', isValidAdmin::class])->group(function () {
     Route::get('/dashboard', [AdminIndexController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/laporan', [AdminIndexController::class, 'laporanPage'])->name('admin.laporan');
+    Route::post('/laporan', [AdminIndexController::class, 'laporan'])->name('admin.laporan');
 
     Route::get('/karyawan', [AdminKaryawanController::class, 'listPage'])->name('admin.karyawan');
     Route::get('/karyawan/pending', [AdminKaryawanController::class, 'pendingPage'])->name('admin.karyawan.pending');
@@ -28,8 +30,8 @@ Route::prefix('admin')->middleware(['auth', 'verified', isValidAdmin::class])->g
     Route::get('/izin/detail/{id}', [AdminIzinController::class, 'detail'])->name('admin.izin.detail');
     Route::patch('/izin/validate', [AdminIzinController::class, 'validate'])->name('admin.izin.validate');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('admin.profile.destroy');
+    Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::patch('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::delete('/profile', [AdminProfileController::class, 'destroy'])->name('admin.profile.destroy');
 
 });

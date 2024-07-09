@@ -32,11 +32,34 @@
             text-align: center;
             vertical-align: middle;
         }
+        @media print {
+                @page {
+                    margin: 10mm 5mm 10mm 5mm;
+                    size: landscape;
+                }
+                body {
+                    -webkit-print-color-adjust: exact;
+                    margin: 0;
+                    padding: 0;
+                }
+                .not-print {
+                    display: none;
+                }
+                table {
+                    margin-top: 20px;
+                    width: 100%;
+                    table-layout: auto;
+                    border: 2px solid black
+                }
+                th, td {
+                    word-wrap: normal;
+                }
+            }
     </style>
 </head>
     <body>
         {{-- Navbar --}}
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark not-print">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.html">Admin Dashboard</a>
             <!-- Sidebar Toggle-->
@@ -63,7 +86,7 @@
         <div id="layoutSidenav">
             {{-- Sidebar --}}
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <nav class="sb-sidenav accordion sb-sidenav-dark not-print" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
@@ -104,10 +127,14 @@
                             </a>
                             <div class="collapse" id="perizinan-sidebar" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/admin/izin">Karyawan Izin</a>
-                                    <a class="nav-link" href="/admin/izin/request">Request Izin</a>
-                                </nav>
+                                <a class="nav-link" href="/admin/izin">Karyawan Izin</a>
+                                <a class="nav-link" href="/admin/izin/request">Request Izin</a>
+                            </nav>
                             </div>
+                            <a class="nav-link" href="/admin/laporan">
+                                <div class="sb-nav-link-icon"><i class="fas fa-reports"></i></div>
+                                Laporan Absensi
+                            </a>
                         </div>
                     </div>
                 </nav>

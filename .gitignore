@@ -18,4 +18,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/public/assets/img/absen
+
+/public/assets/img/absen/*
+!/public/assets/img/absen/blank.jpg
+/public/assets/img/perizinan/*
+!/public/assets/img/perizinan/blank.jpg
+/public/assets/img/profile/*
+!/public/assets/img/profile/profile.jpg

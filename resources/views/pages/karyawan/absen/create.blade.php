@@ -151,9 +151,9 @@
 
         let marker = L.marker([0, 0]).addTo(map);
 
-        // let allowedLocation = L.latLng(-1.616122, 103.592451); // Ganti dengan koordinat lokasi yang diizinkan
-        let allowedLocation = L.latLng(-1.6160256,103.5922094);
-        let maxDistance = 100; // dalam meter, misal 50 meter
+        // let allowedLocation = L.latLng(-1.616122, 103.592451); // UNH Location
+        let allowedLocation = L.latLng(-1.639828, 103.608740); //testing Location
+        let maxDistance = 1000; // dalam meter, misal 50 meter
 
         // Add a marker and circle for the allowed location
         let allowedMarker = L.marker(allowedLocation).addTo(map)

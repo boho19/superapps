@@ -16,6 +16,7 @@ class Karyawan extends Model
         'nik',
         'nama',
         'jenis_kelamin',
+        'cabang',
         'no_hp',
         'alamat',
         'provinsi',
