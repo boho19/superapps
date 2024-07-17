@@ -22,15 +22,17 @@ class DatabaseSeeder extends Seeder
          
         $user = new User();
         $user->email= 'user@gmail.com';
-        $user->password= 'admin123';
+        $user->password= bcrypt('admin123');
         $user->role= 'karyawan';
+        $user->email_verified_at=now();
         $user->save();
 
 
         $user = new User();
         $user->email= 'admin@gmail.com';
-        $user->password= 'admin123';
+        $user->password= bcrypt('admin123');
         $user->role= 'admin';
+        $user->email_verified_at=now();
         $user->save();
 
 
