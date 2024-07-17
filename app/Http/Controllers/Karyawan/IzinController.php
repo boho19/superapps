@@ -25,6 +25,12 @@ class IzinController extends Controller
 
     public function createPage()
     {
+        $status_karyawan = Auth::user()->karyawan->status;
+
+        if ($status_karyawan != 'aktif') {
+            return redirect()->back()->with('error', "Maaf, kamu saat ini sedang {$status_karyawan}.");
+        }
+
         return view('pages.karyawan.izin.create');
     }
 
@@ -39,12 +45,12 @@ class IzinController extends Controller
                 'selesai' => 'required|date|after_or_equal:mulai',
                 'bukti' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
-    
+
             // Ambil ID karyawan dari user yang sedang login
             $id_user = Auth::id();
             $karyawan = Karyawan::where('id_user', $id_user)->firstOrFail();
             $id_karyawan = $karyawan->id;
-    
+
             // Handle image upload
             if ($request->hasFile('bukti')) {
                 $image = $request->file('bukti');
@@ -53,15 +59,15 @@ class IzinController extends Controller
             } else {
                 $imageName = null;
             }
-    
+
             // Gabungkan data request dengan ID karyawan
             $data = array_merge($request->all(), [
                 'id_karyawan' => $id_karyawan,
                 'bukti' => $imageName
             ]);
-    
+
             Izin::create($data);
-    
+
             return redirect()->route('izin')->with('success', 'Data berhasil ditambahkan.');
         } catch (\Exception $e) {
             return redirect()->back()
@@ -69,6 +75,6 @@ class IzinController extends Controller
                 ->withInput();
         }
     }
-    
+
 
 }

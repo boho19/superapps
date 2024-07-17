@@ -71,7 +71,7 @@
                 <div class="col-12 text-center">
                     <div class="logo-small">
                         <img src="../assets/img/logo.png" alt="" class="img">
-                        <h6>GO<br><small>APM</small></h6>
+                        {{-- <h6>GO<br><small>APM</small></h6> --}}
                     </div>
                 </div>
                 <div class="col-12 mx-auto text-center">

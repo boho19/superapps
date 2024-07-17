@@ -35,6 +35,53 @@ class AdminKaryawanController extends Controller
         return view('pages.admin.karyawan.detail', compact('karyawan'));
     }
 
+    public function edit($id)
+    {
+        $id_karyawan = Hashids::decode($id)[0] ?? null;
+        $karyawan = Karyawan::findOrFail($id_karyawan);
+        return view('pages.admin.karyawan.edit', compact('karyawan'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'nik' => 'required|string|max:255',
+                'nama' => 'required|string|max:255',
+                'email' => 'required|string|max:255',
+                'no_hp' => 'required|string|max:15',
+                'jenis_kelamin' => 'required|string',
+                'cabang' => 'nullable|string|max:255',
+                'alamat' => 'nullable|string|max:255',
+                'provinsi' => 'nullable|string|max:255',
+                'jabatan' => 'nullable|string|max:255',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
+            $id_karyawan = Hashids::decode($id)[0] ?? null;
+            $karyawan = Karyawan::findOrFail($id_karyawan);
+            // Handle image upload
+            if ($request->hasFile('foto')) {
+                $image = $request->file('foto');
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->storeAs('/profile', $imageName, 'public_custom');
+            } else {
+                $imageName = $karyawan->foto;
+            }
+
+            $data = array_merge($request->all(),[
+                'foto' => $imageName
+            ]);
+            $karyawan->update($data);
+
+            return redirect()->route('admin.karyawan.edit', $id)->with('success', 'Data karyawan berhasil diubah.');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'Data karyawan tidak ditemukan.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengubah data karyawan.');
+        }
+    }
+
     public function validate(Request $request)
     {
         // Validasi input

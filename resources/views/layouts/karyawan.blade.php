@@ -164,7 +164,7 @@
                     <div class="col text-center">
                         <div class="logo-small">
                             <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img">
-                            <h6>GO<br><small>MobileUX</small></h6>
+                            {{-- <h6>GO<br><small>MobileUX</small></h6> --}}
                         </div>
                     </div>
                     <div class="col-auto align-self-center">

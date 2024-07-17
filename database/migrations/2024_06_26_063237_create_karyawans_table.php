@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nik', 17)->unique();
             $table->string('nama', 50);
             $table->enum('jenis_kelamin', ['LK', 'PR']);
-            $table->enum('cabang', ['jambi alam barajo', 'jambi jelutung', 'jambi sortation'])->nullable();
             $table->string('no_hp', 18);
             $table->string('alamat', 150)->nullable();
             $table->string('provinsi', 25)->nullable();

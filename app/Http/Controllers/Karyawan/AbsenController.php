@@ -30,13 +30,20 @@ class AbsenController extends Controller
     public function createPage()
     {
         $id_user = Auth::id();
+        $status_karyawan = Auth::user()->karyawan->status;
+
+        if ($status_karyawan != 'aktif') {
+            return redirect()->back()->with('error', "Maaf, kamu saat ini sedang {$status_karyawan}.");
+        }
+
         $id_karyawan = Auth::user()->karyawan->id;
 
         $tanggal_hari_ini = Carbon::today('Asia/Jakarta')->format('Y-m-d');
 
         $absen_hari_ini = Absen::where('id_karyawan', $id_karyawan)
-                                ->whereDate('waktu_masuk', $tanggal_hari_ini)
-                                ->exists();
+                                        ->whereIn('status', ['diterima', 'tertunda'])
+                                        ->whereDate('waktu_masuk', $tanggal_hari_ini)
+                                        ->exists();
 
         if ($absen_hari_ini) {
             return redirect()->back()->with('error', 'Anda sudah absen masuk pada hari ini.');

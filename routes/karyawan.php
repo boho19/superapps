@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified', isValidKaryawan::class])->group(function 
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.password.update');
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/karyawan/set-aktif', [ProfileController::class, 'updateStatus'])->name('update.status');
 
     Route::patch('/password/update', [PasswordController::class, 'update'])->name('password.update');
 

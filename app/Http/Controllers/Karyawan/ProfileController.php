@@ -46,7 +46,7 @@ class ProfileController
             ]);
             $id = Auth::id();
             $karyawan = Karyawan::where('id_user', $id)->first();
-    
+
             // Handle image upload
             if ($request->hasFile('foto')) {
                 $image = $request->file('foto');
@@ -55,12 +55,12 @@ class ProfileController
             } else {
                 $imageName = $karyawan->foto;
             }
-    
+
             $data = array_merge($request->all(),[
                 'foto' => $imageName
             ]);
             $karyawan->update($data);
-    
+
             return Redirect::route('profile')->with('status', 'profile-updated');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
@@ -68,5 +68,15 @@ class ProfileController
     }
     public function ganti (){
         return redirect()->back()->with('error', 'Anda sudah absen pulang.');
+    }
+
+    public function updateStatus()
+    {
+        $id = Auth::id();
+        $karyawan = Karyawan::where('id_user', $id)->first();
+        $karyawan->update([
+            'status' => 'aktif'
+        ]);
+        return redirect()->back()->with('status', 'Kamu sudah aktif kembali, selamat bekerja');
     }
 }

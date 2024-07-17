@@ -22,5 +22,5 @@
         </div>
     </div>
     @include('pages.karyawan.profile.partials.update-profile-form')
-    {{-- @include('pages.karyawan.profile.partials.update-password-form') --}}
+    @include('pages.karyawan.profile.partials.update-password-form')
 </x-karyawan-layout>

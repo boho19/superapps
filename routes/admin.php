@@ -17,6 +17,8 @@ Route::prefix('admin')->middleware(['auth', 'verified', isValidAdmin::class])->g
     Route::get('/karyawan', [AdminKaryawanController::class, 'listPage'])->name('admin.karyawan');
     Route::get('/karyawan/pending', [AdminKaryawanController::class, 'pendingPage'])->name('admin.karyawan.pending');
     Route::get('/karyawan/detail/{id}', [AdminKaryawanController::class, 'detail'])->name('admin.karyawan.detail');
+    Route::get('/karyawan/edit/{id}', [AdminKaryawanController::class, 'edit'])->name('admin.karyawan.edit');
+    Route::patch('/karyawan/update/{id}', [AdminKaryawanController::class, 'update'])->name('admin.karyawan.update');
     Route::patch('/karyawan/validate', [AdminKaryawanController::class, 'validate'])->name('admin.karyawan.validate');
     Route::get('/karyawan/delete/{id}', [AdminKaryawanController::class, 'destroy'])->name('admin.karyawan.destroy');
 

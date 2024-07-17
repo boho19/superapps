@@ -1,6 +1,6 @@
-<form method="POST" action="{{ route('password.update') }}">
+<form method="POST" action="/password">
     @csrf
-    @method('PATCH')
+    @method('PUT')
 
     <!-- change password -->
     <div class="row mb-3">
