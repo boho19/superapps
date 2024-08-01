@@ -20,7 +20,6 @@
                                 <th>Posisi</th>
                                 <th>Jarak</th>
                                 <th>Waktu Masuk</th>
-                                <th>Waktu Keluar</th>
                                 <th>Status Kehadiran</th>
                                 <th>Status Absen</th>
                                 <th>Action</th>
@@ -34,7 +33,6 @@
                                         <td>{{ $absen->karyawan->jabatan }}</td>
                                         <td>{{ number_format($absen->jarak, 1) }} m</td>
                                         <td>{{ $absen->waktu_masuk }}</td>
-                                        <td>{{ $absen->waktu_keluar }}</td>
                                         <td>{{ ucwords($absen->kehadiran) }}</td>
                                         <td>
                                             @if ($absen->status == 'disetujui')

@@ -8,7 +8,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,7 +23,7 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
-    {   
+    {
         $request->authenticate();
 
         $request->session()->regenerate();

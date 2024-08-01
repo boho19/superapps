@@ -69,8 +69,8 @@
 
             <div class="row h-100">
                 <div class="col-12 text-center">
-                    <div class="logo-small">
-                        <img src="../assets/img/logo.png" alt="" class="img">
+                    <div class="pt-3">
+                        <img src="../assets/img/logo.png" alt="logo" class="img" width="150px">
                         {{-- <h6>GO<br><small>APM</small></h6> --}}
                     </div>
                 </div>

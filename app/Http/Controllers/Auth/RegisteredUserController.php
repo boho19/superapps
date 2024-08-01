@@ -46,7 +46,6 @@ class RegisteredUserController extends Controller
 
     public function bio()
     {
-
         if (!session()->has('id')) {
             return redirect()->route('register')->with('error', 'Silahkan isi form pendaftaran terlebih dahulu.');
         }

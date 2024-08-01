@@ -56,22 +56,24 @@ class IzinController extends Controller
                 $image = $request->file('bukti');
                 $imageName = time() . '_' . $image->getClientOriginalName();
                 $image->storeAs('/perizinan', $imageName, 'public_custom');
+                // Gabungkan data request dengan ID karyawan
+                $data = array_merge($request->all(), [
+                    'id_karyawan' => $id_karyawan,
+                    'bukti' => $imageName
+                ]);
             } else {
                 $imageName = null;
+                $data = array_merge($request->all(), [
+                    'id_karyawan' => $id_karyawan
+                ]);
             }
-
-            // Gabungkan data request dengan ID karyawan
-            $data = array_merge($request->all(), [
-                'id_karyawan' => $id_karyawan,
-                'bukti' => $imageName
-            ]);
 
             Izin::create($data);
 
             return redirect()->route('izin')->with('success', 'Data berhasil ditambahkan.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Server error, gagal menambahkan data.')
+                ->with('error', 'Server error, gagal menambahkan data.'. $e->getMessage())
                 ->withInput();
         }
     }
